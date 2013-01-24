@@ -1,7 +1,25 @@
 <?php echo $this->getTemplatesHtml() ?>
-
 <script type="text/javascript">
 //<![CDATA[
+
+var Scene7OptionGroups = <?php echo $this->getScene7OptionGroupsJson();?>;
+var Scene7OptionGroupsType = <?php echo $this->getScene7OptionGroupsTypeJson();?>;
+
+function getGroupbyType(type){
+   for(var i=0;i<Scene7OptionGroupsType.length;i++){
+        var typelength = Scene7OptionGroups[Scene7OptionGroupsType[i]]['types'].length;
+        for(var j=0;j<typelength;j++){
+            if(Scene7OptionGroups[Scene7OptionGroupsType[i]]['types'][j]['value'] == type){
+                return Scene7OptionGroupsType[i];
+            }
+        }
+   }
+   return '';
+}
+
+
+
+
 var firstStepTemplate = '<div class="option-box" id="option_{{id}}">'+
     '<table id="<?php echo $this->getFieldId() ?>_{{id}}" class="option-header" cellpadding="0" cellspacing="0">'+
     '<input type="hidden" id="<?php echo $this->getFieldId() ?>_{{id}}_is_delete" name="<?php echo $this->getFieldName() ?>[{{id}}][is_delete]" value="" />'+
@@ -15,7 +33,7 @@ var firstStepTemplate = '<div class="option-box" id="option_{{id}}">'+
     '<th class="opt-type"><?php echo Mage::helper('catalog')->__('Input Type') ?> <span class="required">*</span></th>'+
     '<th class="opt-req"><?php echo $this->jsQuoteEscape(Mage::helper('catalog')->__('Is Required')) ?></th>'+
     '<th class="opt-order"><?php echo Mage::helper('catalog')->__('Sort Order') ?></th>'+
-    '<th class=""><?php echo Mage::helper('catalog')->__('Description') ?></th>'+
+    '<th class=""><?php echo Mage::helper('catalog')->__('Scene7 Code') ?></th>'+
     '<th class="a-right"><?php echo $this->jsQuoteEscape($this->getDeleteButtonHtml()) ?></th>'+
     '</tr>'+
     '</thead>'+
@@ -136,10 +154,10 @@ var productOptionType = {
                 template = OptionTemplateSelect;
                 group = 'select';
                 break;
-            case 'scene7_drop_down':
-                template = OptionTemplateScene7Select;
-                group = 'scene7select';
-                break;
+//            case 'scene7_drop_down':
+//                template = OptionTemplateScene7Select;
+//                group = 'scene7select';
+//                break;
             case 'date':
             case 'date_time':
             case 'time':
@@ -150,6 +168,14 @@ var productOptionType = {
                 template = '';
                 group = 'unknown';
                 break;
+        }
+        if('scene7select' == getGroupbyType(element.getValue())){
+            template = OptionTemplateScene7Select;
+            group = 'scene7select';
+        }
+        if('scene7text' == getGroupbyType(element.getValue())){
+            template = OptionTemplateText;
+            group = 'scene7text';
         }
 
         if (previousGroupElm.getValue() != group) {
@@ -198,10 +224,15 @@ var productOptionType = {
                     case 'multiple':
                         selectOptionType.bindAddButton();
                         break;
-                    case 'scene7_drop_down':
-                    	scene7selectOptionType.bindAddButton();
-                        break;
+//                    case 'scene7_drop_down':
+//                    	scene7selectOptionType.bindAddButton();
+//                        break;
                 }
+
+                if('scene7select' == getGroupbyType(element.getValue())){
+                	scene7selectOptionType.bindAddButton();
+                }
+                
             }
         }
     },
@@ -223,10 +254,10 @@ var productOptionType = {
                 template = OptionTemplateSelect;
                 group = 'select';
                 break;
-            case 'scene7_drop_down':
-                template = OptionTemplateScene7Select;
-                group = 'scene7select';
-                break;
+//            case 'scene7_drop_down':
+//                template = OptionTemplateScene7Select;
+//                group = 'scene7select';
+//                break;
             case 'date':
             case 'date_time':
             case 'time':
@@ -234,6 +265,17 @@ var productOptionType = {
                 group = 'date';
                 break;
         }
+
+        if('scene7select' == getGroupbyType(data.type)){
+            template = OptionTemplateScene7Select;
+            group = 'scene7select';
+        }
+        if('scene7text' == getGroupbyType(data.type)){
+            template = OptionTemplateText;
+            group = 'scene7text';
+        }
+
+        
         $('<?php echo $this->getFieldId() ?>_'+data.id+'_previous_group').value = group;
 
         template = '<div id="<?php echo $this->getFieldId() ?>_{{id}}_type_'+group+'" class="grid tier form-list">'+template+'</div><div id="<?php echo $this->getFieldId() ?>_{{id}}_type_'+group+'_advice"></div>';
@@ -257,13 +299,21 @@ var productOptionType = {
                 });
                 selectOptionType.bindAddButton();
                 break;
-          case 'scene7_drop_down':
-              data.optionValues.each(function(value) {
-                  scene7selectOptionType.add(value);
-              });
-              scene7selectOptionType.bindAddButton();
-              break;
+//          case 'scene7_drop_down':
+//              data.optionValues.each(function(value) {
+//                  scene7selectOptionType.add(value);
+//              });
+//              scene7selectOptionType.bindAddButton();
+//              break;
         }
+
+        if('scene7select' == getGroupbyType(data.type)){
+            data.optionValues.each(function(value) {
+                scene7selectOptionType.add(value);
+            });
+            scene7selectOptionType.bindAddButton();
+        }
+        
         if (data.price_type) {
             $A($('<?php echo $this->getFieldId() ?>_'+data.option_id+'_price_type').options).each(function(option){
                 if (option.value==data.price_type) option.selected = true;

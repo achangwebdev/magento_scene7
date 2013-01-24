@@ -22,9 +22,57 @@ class Achang_Scene7_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Option exte
         $templates = $this->getChildHtml('text_option_type') . "\n" .
             $this->getChildHtml('file_option_type') . "\n" .
             $this->getChildHtml('select_option_type') . "\n" .
-            $this->getChildHtml('date_option_type') . "\n" .
-             $this->getChildHtml('scene7select_option_type') ;
+            $this->getChildHtml('date_option_type');
+        $scene7groups = Achang_Scene7_Model_System_Config_Source_Product_Options_Type::getScene7OptionGroups();
+        
+        foreach($scene7groups as $k =>$v){
+            $templates .= $this->getChildHtml($k.'_option_type'). "\n"  ;
+        }
+             
         return $templates;
+    }
+    
+    public function getScene7OptionGroupsJson(){
+        $scene7groups = Achang_Scene7_Model_System_Config_Source_Product_Options_Type::getScene7OptionGroups();
+        echo Zend_Json::encode($scene7groups);
+    }
+    
+    public function getScene7OptionGroupsTypeJson(){
+        $scene7groups = Achang_Scene7_Model_System_Config_Source_Product_Options_Type::getScene7OptionGroups();
+        echo Zend_Json::encode(array_keys($scene7groups));
+    }
+    
+    protected function _prepareLayout()
+    {
+        $this->setChild('delete_button',
+            $this->getLayout()->createBlock('adminhtml/widget_button')
+                ->setData(array(
+                    'label' => Mage::helper('catalog')->__('Delete Option'),
+                    'class' => 'delete delete-product-option '
+                ))
+        );
+
+        $path = 'global/catalog/product/options/custom/groups';
+
+        foreach (Mage::getConfig()->getNode($path)->children() as $group) {
+            $this->setChild($group->getName() . '_option_type',
+                $this->getLayout()->createBlock(
+                    (string) Mage::getConfig()->getNode($path . '/' . $group->getName() . '/render')
+                )
+            );
+//            echo (string) Mage::getConfig()->getNode($path . '/' . $group->getName() . '/render').'<br>';
+//            echo (string) $group->getName() . '_option_type'.'<br>';
+        }
+        
+        $scene7groups = Achang_Scene7_Model_System_Config_Source_Product_Options_Type::getScene7OptionGroups();
+        
+        foreach($scene7groups as $k =>$v){
+            $this->setChild($k . '_option_type',
+                $this->getLayout()->createBlock($v['render'])
+            );
+        }
+
+        return Mage_Core_Block_Abstract::_prepareLayout();
     }
     
     public function getOptionValues()

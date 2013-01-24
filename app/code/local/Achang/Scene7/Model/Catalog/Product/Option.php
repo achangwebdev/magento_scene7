@@ -10,8 +10,7 @@
 class Achang_Scene7_Model_Catalog_Product_Option extends Mage_Catalog_Model_Product_Option
 {
 	const OPTION_GROUP_SCENE7SELECT = 'scene7select';
-	
-	const OPTION_TYPE_SCENE7_DROP_DOWN = 'scene7_drop_down';
+	const OPTION_GROUP_SCENE7TEXT = 'scene7text';
 	
     protected function _construct()
     {
@@ -28,7 +27,6 @@ class Achang_Scene7_Model_Catalog_Product_Option extends Mage_Catalog_Model_Prod
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_AREA => Mage_Catalog_Model_Product_Option::OPTION_GROUP_TEXT,
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_FILE => Mage_Catalog_Model_Product_Option::OPTION_GROUP_FILE,
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_DROP_DOWN => Mage_Catalog_Model_Product_Option::OPTION_GROUP_SELECT,
-            self::OPTION_TYPE_SCENE7_DROP_DOWN => self::OPTION_GROUP_SCENE7SELECT,
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_RADIO => Mage_Catalog_Model_Product_Option::OPTION_GROUP_SELECT,
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_CHECKBOX => Mage_Catalog_Model_Product_Option::OPTION_GROUP_SELECT,
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_MULTIPLE => Mage_Catalog_Model_Product_Option::OPTION_GROUP_SELECT,
@@ -36,6 +34,18 @@ class Achang_Scene7_Model_Catalog_Product_Option extends Mage_Catalog_Model_Prod
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_DATE_TIME => Mage_Catalog_Model_Product_Option::OPTION_GROUP_DATE,
             Mage_Catalog_Model_Product_Option::OPTION_TYPE_TIME => Mage_Catalog_Model_Product_Option::OPTION_GROUP_DATE,
         );
+        
+        $scene7groups = Achang_Scene7_Model_System_Config_Source_Product_Options_Type::getScene7OptionGroups();
+        
+        foreach($scene7groups as $k =>$v){
+        	if(is_array($v['types'])){
+        	   foreach($v['types'] as $k1=>$v1){
+        	       if($v1['value'] == $type){
+        	           return $k;
+        	       }
+        	   }
+        	}
+        }
 
         return isset($optionGroupsToTypes[$type])?$optionGroupsToTypes[$type]:'';
     }
@@ -52,7 +62,6 @@ class Achang_Scene7_Model_Catalog_Product_Option extends Mage_Catalog_Model_Prod
             $this->setData($option)
                 ->setData('product_id', $this->getProduct()->getId())
                 ->setData('store_id', $this->getProduct()->getStoreId());
-
             if ($this->getData('option_id') == '0') {
                 $this->unsetData('option_id');
             } else {
@@ -127,9 +136,18 @@ class Achang_Scene7_Model_Catalog_Product_Option extends Mage_Catalog_Model_Prod
                                 $this->setData('image_size_y', '0');
                                 break;
                             case Mage_Catalog_Model_Product_Option::OPTION_GROUP_TEXT:
-                                $this->setData('max_characters', '0');
+                                if($this->getGroupByType($this->getData('type')) !=  self::OPTION_GROUP_SCENE7TEXT){
+                                    $this->setData('max_characters', '0');
+                                }
                                 break;
                             case Mage_Catalog_Model_Product_Option::OPTION_GROUP_DATE:
+                                break;
+                            case self::OPTION_GROUP_SCENE7TEXT:
+                            	if($this->getGroupByType($this->getData('type')) != Mage_Catalog_Model_Product_Option::OPTION_GROUP_SELECT && $this->getGroupByType($this->getData('type')) != self::OPTION_GROUP_SCENE7SELECT){
+                            		
+                            	}else{
+                            		
+                            	}
                                 break;
                         }
                         if ($this->getGroupByType($this->getData('type')) == Mage_Catalog_Model_Product_Option::OPTION_GROUP_SELECT || $this->getGroupByType($this->getData('type')) == self::OPTION_GROUP_SCENE7SELECT) {

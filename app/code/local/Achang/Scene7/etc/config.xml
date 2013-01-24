@@ -56,6 +56,11 @@
                     <product_option_type_default>Achang_Scene7_Model_Catalog_Product_Option_Type_Default</product_option_type_default>
                 </rewrite>
             </catalog>
+            <adminhtml>
+                <rewrite>
+                      <system_config_source_product_options_type>Achang_Scene7_Model_System_Config_Source_Product_Options_Type</system_config_source_product_options_type>
+                </rewrite>
+            </adminhtml>
         </models>
         <resources>
             <scenescene7_setup>
@@ -97,21 +102,6 @@
                         <price_model>scenescene7/product_price_goods</price_model>
                     </scene_goods_product>
                 </type>
-                <options>
-                    <custom>
-                        <groups>
-                            <scene7select translate="label" module="scenescene7">
-                                <label>Scene7 Attribute</label>
-                                <render>scenescene7/adminhtml_catalog_product_edit_tab_options_type_select</render>
-                                <types>
-                                    <scene7_drop_down translate="label" module="scenescene7">
-                                        <label>Scene7 Drop-down</label>
-                                    </scene7_drop_down>
-                                </types>
-                            </scene7select>
-                        </groups>
-                    </custom>
-                </options>
             </product>
         </catalog>
         
