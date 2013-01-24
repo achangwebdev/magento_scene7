@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout>
+    <scenescene7_admin_adminhtml_group_index>
+        <reference name="content">
+            <block type="scenescene7/adminhtml_group" name="scenescene7group"/>
+        </reference>
+    </scenescene7_admin_adminhtml_group_index>
+    <scenescene7_admin_adminhtml_sceneitem_index>
+        <reference name="content">
+            <block type="scenescene7/adminhtml_sceneitem" name="scenescene7sceneitem"/>
+        </reference>
+    </scenescene7_admin_adminhtml_sceneitem_index>
+    
+    <scenescene7_admin_adminhtml_sceneitem_group>
+        <block type="core/text_list" name="root">
+            <block type="scenescene7/adminhtml_sceneitem_edit_tabs_group" name="sceneitem.related.group.grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="related_grid_serializer">
+                <reference name="related_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>sceneitem.related.group.grid</grid_block_name>
+                        <data_callback>getSelectedRelatedGroups</data_callback>
+                        <hidden_input_name>links[related_group]</hidden_input_name>
+                        <reload_param_name>related_group_grid</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                       <input_name>position</input_name>
+                   </action>
+                </reference>
+            </block>
+        </block>
+    </scenescene7_admin_adminhtml_sceneitem_group>
+    
+    <scenescene7_admin_adminhtml_sceneitem_groupgrid>
+        <block type="core/text_list" name="root">
+            <block type="scenescene7/adminhtml_sceneitem_edit_tabs_group" name="sceneitem.related.group.grid"/>
+        </block>
+    </scenescene7_admin_adminhtml_sceneitem_groupgrid>
+    
+    <scenescene7_admin_adminhtml_group_relatedsceneitems>
+        <block type="core/text_list" name="root" output="toHtml">
+        <block type="scenescene7/adminhtml_group_edit_tabs_related_sceneitem" name="related_sceneitems.grid"/>
+        <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+            <reference name="grid_serializer">
+                <action method="initSerializerBlock">
+                    <grid_block_name>related_sceneitems.grid</grid_block_name>
+                    <data_callback>getSelectedRelatedSceneitems</data_callback>
+                    <hidden_input_name>links[related_sceneitems]</hidden_input_name>
+                    <reload_param_name>related_sceneitems</reload_param_name>
+                </action>
+                <action method="addColumnInputName">
+                    <input_name>position</input_name>
+                </action>
+            </reference>
+        </block>
+        </block>
+    </scenescene7_admin_adminhtml_group_relatedsceneitems>
+    <scenescene7_admin_adminhtml_group_relatedsceneitemsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="scenescene7/adminhtml_group_edit_tabs_related_sceneitem" name="related_sceneitems.grid"/>
+        </block>
+    </scenescene7_admin_adminhtml_group_relatedsceneitemsgrid>
+<!--
+<scenescene7_admin_adminhtml_product_relatedscenescene7>
+</scenescene7_admin_adminhtml_product_relatedscenescene7>
+-->
+</layout>

@@ -1,0 +1,159 @@
+<?php
+/* @var $this Scene_Scene7_Block_Adminhtml_Product_Edit_Tabs_Scenescen7_Jewelgroup */
+?>
+<?php $_htmlId      = $this->getElement()->getHtmlId() ?>
+<?php $_htmlClass   = $this->getElement()->getClass() ?>
+<?php $_htmlName    = $this->getElement()->getName() ?>
+<?php $_readonly    = $this->getElement()->getReadonly() ?>
+<tr>
+	<td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+	<td colspan="10" class="grid tier">
+	<table cellspacing="0" class="data border" id="tiers_table">
+		<col width="120" />
+		<col width="95" />
+		<col width="1" />
+		<thead>
+			<tr class="headings">
+				<th><?php echo Mage::helper('scenescene7')->__('Jewel Group') ?></th>
+				<th><?php echo Mage::helper('scenescene7')->__('Default Jewel') ?></th>
+				<th><?php echo Mage::helper('scenescene7')->__('Angle') ?></th>
+				<th><?php echo Mage::helper('scenescene7')->__('Jewel Label') ?></th>
+				<th><?php echo Mage::helper('scenescene7')->__('Position') ?></th>
+				<th class="last"><?php echo Mage::helper('catalog')->__('Action') ?></th>
+			</tr>
+		</thead>
+		<tbody id="<?php echo $_htmlId ?>_container"></tbody>
+		<tfoot>
+			<tr>
+				<td colspan="11" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+			</tr>
+		</tfoot>
+	</table>
+	<script type="text/javascript">
+var defaultGroupRowTemplate = '<tr>'
+
+    
+    + '<td>'
+    + '<input type="hidden" name="<?php echo $_htmlName ?>[{{index}}][value_id]"   id="default_group_row_{{index}}_value_id"/>'
+    + '<input type="hidden" name="<?php echo $_htmlName ?>[{{index}}][product_id]" id="default_group_row_{{index}}_product_id"/>'
+    
+    + '<select style="width:100px;" class="<?php echo $_htmlClass ?> required-entry" name="<?php echo $_htmlName ?>[{{index}}][jewel_group]" id="default_group_row_{{index}}_jewel_group" >'
+    <?php foreach ($this->getSceneitemGroup() as $_info): ?>
+    + '<option value="<?php echo $_info['value'] ?>"><?php echo $this->jsQuoteEscape($this->htmlEscape($_info['label'])) ?></option>'
+    <?php endforeach ?>
+    + '</select></td>'
+    
+    + '<td><select class="<?php echo $_htmlClass ?> required-entry" name="<?php echo $_htmlName ?>[{{index}}][default_jewel]" id="default_group_row_{{index}}_default_jewel">'
+    <?php foreach ($this->getSceneitems() as $_info): ?>
+    + '<option value="<?php echo $_info['value'] ?>"><?php echo $this->jsQuoteEscape($this->htmlEscape($_info['label'])) ?></option>'
+    <?php endforeach ?>
+    + '</select></td>' 
+
+    + '<td><input type="text"  style="width:100px;" name="<?php echo $_htmlName ?>[{{index}}][angle]" id="default_group_row_{{index}}_angle" /></td>' 
+    + '<td><input type="text"  style="width:100px;" name="<?php echo $_htmlName ?>[{{index}}][jewel_label]" id="default_group_row_{{index}}_jewel_label" /></td>' 
+    + '<td><input type="text"  style="width:100px;" name="<?php echo $_htmlName ?>[{{index}}][position]" id="default_group_row_{{index}}_position" /></td>'
+
+    + '<td class="last"><input type="hidden" name="<?php echo $_htmlName ?>[{{index}}][delete]" class="delete" value="" id="default_group_row_{{index}}_delete" />'
+    + '<button title="<?php echo Mage::helper("catalog")->__("Delete Group") ?>" type="button" class="scalable delete icon-btn delete-product-option" id="default_group_row_{{index}}_delete_button" onclick="return defaultGroupControl.deleteItem(event);">'
+    + '<span><?php echo Mage::helper("catalog")->__("Delete") ?></span></button></td>'
+    + '</tr>';
+var defaultGroupControl = {
+    template: new Template(defaultGroupRowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', "")),
+    itemsCount: 0,
+    addItem : function () {    
+        <?php if ($_readonly): ?>
+        if (arguments.length < 7) {
+            return;
+        }
+        <?php endif; ?>
+        var data = {
+            value_id: '',
+            product_id: '<?php echo $this->getProduct()->getId();?>',
+            jewel_group: '',
+            default_jewel:'',
+            angle: '',
+            jewel_label:'',
+            position:'',
+            readOnly: false,
+            index: this.itemsCount++
+        };
+
+        if(arguments.length >= 7) {
+            data.value_id                  = arguments[0];
+            data.product_id                = arguments[1];
+            data.jewel_group               = arguments[2];
+            data.default_jewel             = arguments[3];  
+            data.angle                     = arguments[4];
+            data.jewel_label               = arguments[5];
+            data.position                  = arguments[6];       
+            
+        }
+        if (arguments.length == 8) {
+            data.readOnly = arguments[7];
+        }
+
+        Element.insert($('<?php echo $_htmlId ?>_container'), {
+            bottom : this.template.evaluate(data)
+        });
+
+        $('default_group_row_' + data.index + '_value_id').value = data.value_id;
+        $('default_group_row_' + data.index + '_product_id').value = data.product_id;
+        $('default_group_row_' + data.index + '_jewel_group').value = data.jewel_group;
+        $('default_group_row_' + data.index + '_default_jewel').value = data.default_jewel;
+        $('default_group_row_' + data.index + '_angle').value = rhtmlspecialchars(data.angle);
+        $('default_group_row_' + data.index + '_jewel_label').value = data.jewel_label;
+        $('default_group_row_' + data.index + '_position').value = data.position;
+
+        if (data.readOnly == '1') {
+            ['product_id', 'jewel_group','default_jewel', 'angle','jewel_label', 'position','delete'].each(function(idx){
+                $('default_group_row_'+data.index+'_'+idx).disabled = true;
+            });
+            $('default_group_row_'+data.index+'_delete_button').hide();
+        }
+
+        <?php if ($_readonly): ?>
+        $('<?php echo $_htmlId ?>_container').select('input', 'select').each(this.disableElement);
+        $('<?php echo $_htmlId ?>_container').up('table').select('button').each(this.disableElement);
+        <?php else: ?>
+        $('<?php echo $_htmlId ?>_container').select('input', 'select').each(function(el){ Event.observe(el, 'change', el.setHasChanges.bind(el)); });
+        <?php endif; ?>
+    },
+    disableElement: function(el) {
+        el.disabled = true;
+        el.addClassName('disabled');
+    },
+    deleteItem: function(event) {
+        var tr = Event.findElement(event, 'tr');
+        if (tr) {
+            Element.select(tr, '.delete').each(function(elem){elem.value='1'});
+            Element.select(tr, ['input', 'select']).each(function(elem){elem.hide()});
+            Element.hide(tr);
+            Element.addClassName(tr, 'no-display template');
+        }
+        return false;
+    }
+};
+
+<?php foreach ($this->getValues() as $_item): ?>
+
+defaultGroupControl.addItem('<?php echo $_item['value_id']?>', '<?php echo $_item['product_id']?>',"<?php echo $_item['jewel_group']?>","<?php echo $_item['default_jewel']?>", "<?php echo htmlspecialchars($_item['angle']);?>", "<?php echo $_item['jewel_label']?>", '<?php echo $_item['position']?>', <?php echo (int)!empty($_item['readonly'])?>);
+<?php endforeach; ?>
+<?php if ($_readonly): ?>
+$('<?php echo $_htmlId ?>_container').up('table').select('button')
+    .each(defaultGroupControl.disableElement);
+<?php endif; ?>
+function rhtmlspecialchars(str) {
+     if (typeof(str) == "string") {
+      str = str.replace(/&gt;/ig, ">");
+      str = str.replace(/&lt;/ig, "<");
+      str = str.replace(/&#039;/g, "'");
+      str = str.replace(/&quot;/ig, '"');
+      str = str.replace(/&amp;/ig, '&'); /* must do &amp; last */
+      }
+     return str;
+     }
+//]]>
+</script>
+
+</tr>
+
