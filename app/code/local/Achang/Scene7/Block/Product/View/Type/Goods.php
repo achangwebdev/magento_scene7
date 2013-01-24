@@ -1,0 +1,4 @@
+<?php
+class Achang_Scene7_Block_Product_View_Type_Goods extends Mage_Catalog_Block_Product_View_Abstract{
+
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <scene7tab translate="label" module="scenescene7">
+            <label>Scene7</label>
+            <sort_order>300</sort_order>
+        </scene7tab>
+    </tabs>
+    <sections>
+        <scenescene7 translate="label" module="scenescene7">
+            <label>Scene7 Setting</label>                   
+            <tab>scene7tab</tab>           
+            <sort_order>340</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <scene7settings translate="label">
+                    <label>Scene7 Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <scene7_main_url translate="label">
+                            <label>Scene7 Main Publish Url </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </scene7_main_url>
+                        <scene7_company translate="label">
+                            <label>Scene7 Company Code </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </scene7_company>
+                        <scene7_jewel_param translate="label">
+                            <label>Scene7 Jewel Param </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </scene7_jewel_param>
+                        <scene7_goods_param translate="label">
+                            <label>Scene7 Goods Param </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </scene7_goods_param>
+                    </fields>                
+                </scene7settings>       
+            </groups>
+        </scenescene7>
+    </sections>
+</config>
