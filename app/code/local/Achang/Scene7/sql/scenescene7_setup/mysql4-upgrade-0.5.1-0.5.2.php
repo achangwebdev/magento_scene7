@@ -1,8 +1,11 @@
 <?php
+
 $installer = $this;
+
 $installer->startSetup();
 
-$entityTypeId = $installer->getEntityTypeId('catalog_product');
-$attrSetId =  $installer->getAttributeSetId($entityTypeId, 'Default');
-Mage::helper('scenescene7')->createAttributeSet('Jewel', $attrSetId);
+$installer->run("
+ALTER TABLE  `{$installer->getTable('scenescene7/scene_scene7_attribute')}` ADD  `attribute_code` VARCHAR( 255 ) NOT NULL AFTER  `scene7_code`;
+    ");
+
 $installer->endSetup(); 
