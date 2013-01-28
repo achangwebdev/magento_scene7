@@ -97,13 +97,6 @@
                         <is_qty>1</is_qty>
                         <price_model>scenescene7/product_price_jewel</price_model>
                     </scene_jewel_product>
-                    <scene_goods_product translate="label" module="scenescene7">
-                        <label>Goods Product</label>
-                        <model>scenescene7/product_type_goods</model>
-                        <composite>0</composite>
-                        <is_qty>1</is_qty>
-                        <price_model>scenescene7/product_price_goods</price_model>
-                    </scene_goods_product>
                 </type>
             </product>
         </catalog>

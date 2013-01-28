@@ -23,24 +23,10 @@
                     <title>Scene7</title>
                     <sort_order>30</sort_order>
                     <children>
-                        <Group translate="title" module="scenescene7">
-                            <title>Group</title>
-                            <action>scenescene7_admin/adminhtml_group/index/</action>
-                        </Group>
-                        <Sceneitem translate="title" module="scenescene7">
-                            <title>Sceneitem</title>
-                            <action>scenescene7_admin/adminhtml_sceneitem/index/</action>
-                        </Sceneitem>
                         <Sceneattribute translate="title" module="scenescene7">
                             <title>Scene7 Attribute</title>
                             <action>scenescene7_admin/adminhtml_attribute/index/</action>
                         </Sceneattribute>
-                        <!-- 
-                        <Scenetype translate="title" module="scenescene7">
-                            <title>Scenetype</title>
-                            <action>adminhtml/catalog_product_attribute/edit/attribute_id/964</action>
-                        </Scenetype>
-                         -->
                     </children>
                 </scenescene7>
             </children>

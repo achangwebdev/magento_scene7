@@ -1,32 +1,6 @@
 <?php
 class Achang_Scene7_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    public function getRelatedGroups($sceneitem){
-        if (!$sceneitem->hasRelatedSceneitems()) {
-           $groups = array();
-           $collection = Mage::getModel('scenescene7/link')->getCollection()->addFieldToFilter('sceneitem_id',array('eq'=>$sceneitem->getId()));
-            foreach ($collection as $group) {
-            $groups[] = $group;
-            }
-            $sceneitem->setRelatedGroups($groups);
-        }
-        return $sceneitem->getData('related_groups');
-    }
-    public function getRelatedSceneitems($group){
-        if (!$group->hasRelatedSceneitems()) {
-            $sceneitems = array();
-            $collection = Mage::getModel('scenescene7/link')->getCollection()
-             ->addFieldToFilter('group_id',array('eq'=>$group->getId()));
-
-            foreach ($collection as $sceneitem) {
-                $sceneitems[] = $sceneitem;
-            }
-            $group->setRelatedSceneitems($sceneitems);
-        }
-        
-        return $group->getData('related_sceneitems');
-    }
-    
     public function createAttributeSet($setName, $copyGroupsFromID = -1)
     {
  
