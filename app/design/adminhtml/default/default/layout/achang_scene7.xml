@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <layout>
+
+    <scenescene7_admin_adminhtml_attribute_index>
+        <reference name="content">
+            <block type="scenescene7/adminhtml_attribute" name="attribute" />
+        </reference>
+    </scenescene7_admin_adminhtml_attribute_index>
     <scenescene7_admin_adminhtml_group_index>
         <reference name="content">
             <block type="scenescene7/adminhtml_group" name="scenescene7group"/>
