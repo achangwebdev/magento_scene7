@@ -202,4 +202,26 @@ class Achang_Scene7_Model_Catalog_Product_Option extends Mage_Catalog_Model_Prod
         
         return $collection;
     }
+    
+    /**
+     * Group model factory
+     *
+     * @param string $type Option type
+     * @return Mage_Catalog_Model_Product_Option_Group_Abstract
+     */
+    public function groupFactory($type)
+    {
+        $group = $this->getGroupByType($type);
+        if ($group == self::OPTION_GROUP_SCENE7SELECT){
+            return Mage::getModel('scenescene7/catalog_product_option_type_' . $group);
+        }
+        if ($group == self::OPTION_GROUP_SCENE7TEXT){
+            return Mage::getModel('scenescene7/catalog_product_option_type_' . $group);
+        }
+        if (!empty($group)) {
+            return Mage::getModel('catalog/product_option_type_' . $group);
+        }
+        
+        Mage::throwException(Mage::helper('catalog')->__('Wrong option type to get group instance.'));
+    }
 }

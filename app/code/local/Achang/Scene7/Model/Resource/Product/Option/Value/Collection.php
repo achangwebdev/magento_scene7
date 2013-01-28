@@ -29,7 +29,10 @@ class Achang_Scene7_Model_Resource_Product_Option_Value_Collection
             ->joinLeft(array('store_value_title'=>$this->getTable('catalog/product_option_type_title')),
                 '`store_value_title`.option_type_id=`main_table`.option_type_id AND '.$this->getConnection()->quoteInto('`store_value_title`.store_id=?',$store_id),
                 array('store_title'=>'title','title'=>new Zend_Db_Expr('IFNULL(`store_value_title`.title,`default_value_title`.title)')))
-            ->where('`default_value_title`.store_id=?',0);
+            ->where('`default_value_title`.store_id=?',0)
+            ->joinLeft(array('default_value_detail'=>$this->getTable('scenescene7/product_option_type_detail')),
+                                    $this->getConnection()->quoteInto('`main_table`.option_type_id = default_value_detail.option_type_id and default_value_detail.store_id ='.$store_id,''),
+                                    array('scene7_code','catalog_product_option_type_detail_id'));
         return $this;
     }
 	

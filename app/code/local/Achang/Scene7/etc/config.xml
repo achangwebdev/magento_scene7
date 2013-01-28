@@ -117,6 +117,12 @@
                     <catalog_product_edit_tab_options_option>Achang_Scene7_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Option</catalog_product_edit_tab_options_option>
                 </rewrite>
             </adminhtml>
+            <catalog>
+                <rewrite>
+                    <product_view_options>Achang_Scene7_Block_Product_View_Options</product_view_options>
+                </rewrite>
+            </catalog>
+
         </blocks>
         <helpers>
             <scenescene7>
