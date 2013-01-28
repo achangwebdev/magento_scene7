@@ -57,10 +57,6 @@
             <?php endif; ?>
 
             <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
-
-
-            <?php echo $this->getChildHtml('custom_jewel_scene')?>
-            
             <?php echo $this->getChildHtml('alert_urls') ?>
             <?php echo $this->getChildHtml('product_type_data') ?>
             <?php echo $this->getTierPriceHtml() ?>
@@ -95,9 +91,9 @@
             <?php endif;?>
 
         </div>
-<!-- update image url -->
+
         <div class="product-img-box">
-            <?php echo $this->getChildHtml('product_preview') ?>
+            <?php echo $this->getChildHtml('media') ?>
         </div>
 
         <div class="clearer"></div>
@@ -133,4 +129,3 @@
         <?php echo $this->getChildHtml('product_additional_data') ?>
     </div>
 </div>
-

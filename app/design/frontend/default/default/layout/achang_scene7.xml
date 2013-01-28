@@ -11,15 +11,17 @@
                 </block>
             </block>
             <block type="scenescene7/custom_jewel_scene" name="custom.jewel.scene" as ="custom_jewel_scene" template="scene7/custom/jewel/scene.phtml"/>
-             <remove name="product.info.media"/>
+             <!-- <remove name="product.info.media"/> -->
            <block type="scenescene7/custom_jewel_preview" name="product.preview" as ="product_preview" template="scene7/custom/preview.phtml"/>
         </reference>
     </PRODUCT_TYPE_scene_jewel_product>
+    <!-- 
     <checkout_cart_index>
         <reference name="checkout.cart">
-            <action method="addItemRender"><type>scene_jewel_product</type><block>checkout/cart_item_renderer</block><template>scene7/checkout/jewel/cart.phtml</template></action>
+            <action method="addItemRender"><type>scene_goods_product</type><block>checkout/cart_item_renderer</block><template>scene7/checkout/goods/cart.phtml</template></action>
         </reference>
     </checkout_cart_index>
+     -->
     <PRODUCT_TYPE_scene_goods_product>
         <reference name="product.info">
             <action method="setTemplate">
@@ -35,11 +37,6 @@
            <block type="scenescene7/custom_goods_preview" name="product.preview" as ="product_preview" template="scene7/custom/preview.phtml"/>
         </reference>
     </PRODUCT_TYPE_scene_goods_product> 
-    <checkout_cart_index>
-        <reference name="checkout.cart">
-            <action method="addItemRender"><type>scene_goods_product</type><block>checkout/cart_item_renderer</block><template>scene7/checkout/goods/cart.phtml</template></action>
-        </reference>
-    </checkout_cart_index>
 </layout>
 
 
