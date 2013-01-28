@@ -69,7 +69,7 @@
             <scenescene7_setup>
                 <setup>
                     <module>Achang_Scene7</module>
-                    <class>Achang_Scene7_Model_Mysql4_Setup</class>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
                 </setup>
                 <connection>
                     <use>core_setup</use>
@@ -123,22 +123,7 @@
             </scenescene7>
         </helpers>
         <events>
-            <scenescene7_group_changed>
-                    <observers>
-                        <scenescene7_group_changed_event>
-                            <class>scenescene7/observer</class>
-                            <method>groupChanged</method>
-                        </scenescene7_group_changed_event>
-                    </observers>
-            </scenescene7_group_changed>
-            <scenescene7_sceneitem_changed>
-                    <observers>
-                        <scenescene7_sceneitem_changed_event>
-                            <class>scenescene7/observer</class>
-                            <method>sceneitemChanged</method>
-                        </scenescene7_sceneitem_changed_event>
-                    </observers>
-            </scenescene7_sceneitem_changed>
+        <!-- 
             <adminhtml_catalog_product_edit_prepare_form>
                 <observers>
                     <scenescene7_observer>
@@ -147,6 +132,7 @@
                     </scenescene7_observer>
                 </observers>
             </adminhtml_catalog_product_edit_prepare_form>
+         -->
         </events>
     </global>
     <frontend>
