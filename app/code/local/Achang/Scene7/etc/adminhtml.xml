@@ -7,7 +7,7 @@
                     <catalog>
                         <children>
                             <scenescene7 translate="title" module="scenescene7">
-                                <title>Scene</title>
+                                <title>Scene7</title>
                                 <sort_order>15</sort_order>
                             </scenescene7>
                         </children>
@@ -20,7 +20,7 @@
         <catalog>
             <children>
                 <scenescene7 translate="title" module="scenescene7">
-                    <title>Scene</title>
+                    <title>Scene7</title>
                     <sort_order>30</sort_order>
                     <children>
                         <Group translate="title" module="scenescene7">
@@ -31,6 +31,10 @@
                             <title>Sceneitem</title>
                             <action>scenescene7_admin/adminhtml_sceneitem/index/</action>
                         </Sceneitem>
+                        <Sceneattribute translate="title" module="scenescene7">
+                            <title>Scene7 Attribute</title>
+                            <action>scenescene7_admin/adminhtml_attribute/index/</action>
+                        </Sceneattribute>
                         <!-- 
                         <Scenetype translate="title" module="scenescene7">
                             <title>Scenetype</title>

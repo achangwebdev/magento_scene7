@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Achang_Scene7>
-            <version>0.5.8</version>
+            <version>0.5.10</version>
         </Achang_Scene7>
     </modules>
     <global>
@@ -47,6 +47,9 @@
                     <product_option_type_detail>
                         <table>catalog_product_option_type_detail</table>
                     </product_option_type_detail>
+                    <scene_scene7_attribute>
+                        <table>scene_scene7_attribute</table>
+                    </scene_scene7_attribute>
                 </entities>
             </scenescene7_resource>
             <catalog>

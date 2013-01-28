@@ -43,20 +43,31 @@ class Achang_Scene7_Model_System_Config_Source_Product_Options_Type
     }
     
     static function getScene7OptionGroups(){
-    $groups['scene7select'] = array('label' => 'Scene7 Select',
-                                          'render' => 'scenescene7/adminhtml_catalog_product_edit_tab_options_type_select',
-                                          'types' => array(
-                                                            array('label'=>'Scene7 Drop-down','value'=>'scene7_drop_down'),
-                                                            array('label'=>'Scene7 Drop-down2','value'=>'scene7_drop_down2')
-                                                          )
-                                    );
-     $groups['scene7text'] = array('label' => 'Scene7 Text',
-                                          'render' => 'adminhtml/catalog_product_edit_tab_options_type_text',
-                                          'types' => array(
-                                                            array('label'=>'Scene7 Text1','value'=>'scene7_text1'),
-                                                            array('label'=>'Scene7 Text2','value'=>'scene7_text2')
-                                                          )
-                                    );	
-    return $groups;
+	    $allattribute = Mage::getModel('scenescene7/attribute')->getCollection();
+//	    $selectAttribute = array();
+//	    $textAttribute = array();
+	    $selectTypes = array();
+	    $textTypes = array();
+	    
+	    foreach($allattribute as $attribute){
+	    	if($attribute->getType() == 'select'){
+	    	   //$selectAttribute[] = $attribute;
+	    	   $selectTypes[] = array('label'=>$attribute->getTitle(),'value'=>$attribute->getAttributeCode());
+	    	}
+	    	if($attribute->getType() == 'text'){
+	    	   //$textAttribute[] = $attribute;
+	    	   $textTypes[] = array('label'=>$attribute->getTitle(),'value'=>$attribute->getAttributeCode());
+	    	}
+	    }
+	    	
+	    $groups['scene7select'] = array('label' => 'Scene7 Select',
+	                                          'render' => 'scenescene7/adminhtml_catalog_product_edit_tab_options_type_select',
+	                                          'types' => $selectTypes
+	                                    );
+	    $groups['scene7text'] = array('label' => 'Scene7 Text',
+	                                          'render' => 'adminhtml/catalog_product_edit_tab_options_type_text',
+	                                          'types' => $textTypes
+	                                    );	
+	    return $groups;
     }
 }
