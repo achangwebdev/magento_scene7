@@ -40,4 +40,22 @@ class Achang_Scene7_Block_Product_View_Options extends Mage_Catalog_Block_Produc
 
         return Mage::helper('core')->jsonEncode($config);
     }
+    
+    public function getScene7AttributeJsonConfig()
+    {
+        $config = array();
+        foreach ($this->getOptions() as $option) {
+            if ($option->getGroupByType() == Achang_Scene7_Model_Catalog_Product_Option::OPTION_GROUP_SCENE7SELECT) {
+            	 $values = Mage::getModel('catalog/product_option_value')->getCollection()
+                        ->addScene7DetailToResult(Mage::app()->getStore()->getId())
+                        ->addOptionToFilter(array($option->getId()));
+                foreach ($values as $value) {
+                   $config[$option->getId()][$value->getId()] = array('sku'=>$value->getSku(),'scene7_code'=>$value->getScene7Code());
+                }
+            } else if($option->getGroupByType() == Achang_Scene7_Model_Catalog_Product_Option::OPTION_GROUP_SCENE7TEXT){
+                $config[$option->getId()] = array('sku'=>$value->getSku());
+            }
+        }
+       return Mage::helper('core')->jsonEncode($config);
+    }
 }

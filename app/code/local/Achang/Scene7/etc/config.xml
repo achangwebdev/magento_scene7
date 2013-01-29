@@ -148,7 +148,7 @@
                 <use>standard</use>
                 <args>
                     <module>Achang_Scene7</module>
-                    <frontName>scenescene7</frontName>
+                    <frontName>scene7</frontName>
                 </args>
             </scenescene7>
         </routers>
