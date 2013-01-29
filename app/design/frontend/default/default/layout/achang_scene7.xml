@@ -14,6 +14,12 @@
              <!-- <remove name="product.info.media"/> -->
            <block type="scenescene7/custom_jewel_preview" name="product.preview" as ="product_preview" template="scene7/custom/preview.phtml"/>
         </reference>
+        <reference name="product.info.options">
+            <action method="setTemplate">
+                <template>scene7/catalog/product/view/options.phtml</template>
+            </action>
+        </reference>
+        
     </PRODUCT_TYPE_scene_jewel_product>
     <!-- 
     <checkout_cart_index>
