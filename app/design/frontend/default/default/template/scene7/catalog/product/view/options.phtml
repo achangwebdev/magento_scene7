@@ -162,9 +162,27 @@
             });
 
             if(flag){
-                var form = $('product_addtocart_form');
+                //var form = $('product_addtocart_form');
                 var url = '<?php echo $this->getUrl('scene7/index/index');?>'; 
-                var myAjax = new Ajax.Request(url,{method:'post', parameters: Form.serialize(form),onComplete:updateImg});
+                //var myAjax = new Ajax.Request(url,{method:'post', parameters: Form.serialize(form),onComplete:updateImg});
+                var $imageChangeAjax = $j.manageAjax.create('imageChange', {queue: true, cacheResponse: true, abortOld: true});
+                $imageChangeAjax.add({type:'POST',url: url, dataType: 'json', data: $j("#product_addtocart_form").serialize(),
+	                	beforeSend: function(data) {
+	                    updateImageStart();
+	                  },
+                      success: function(data) {
+			                    if(data.result == "ok"){
+			                        $j('#image').attr('src',data.url).load(function(){
+			                        	updateImageStop();
+				                    });
+			                    }else{
+			                      alert(data.error); 
+			                    }  
+                     },
+                     error: function(res, status, errorThrown) {
+                         updateImageStop();
+                     }
+               });
             }
         }
     }
@@ -182,14 +200,24 @@
     var opConfig = new Product.Options(<?php echo $this->getJsonConfig() ?>);
     //added by Minglong
     var opscene7Config = <?php echo $this->getScene7AttributeJsonConfig();?>;
-    function updateImg(originalRequest){
-       var res = originalRequest.responseText.evalJSON();
-	   if(res.result == "ok"){
-		   $('image').src = res.url;
-	   }else{
-	     alert(res.error); 
-	   }  
-     }
+    var $image = $j('#image');
+    function updateImageStart() {
+         var loading = $image.next('span.image_loading');
+         if (!loading.size()) {
+           loading = $j('<span class="image_loading"></span>').insertAfter($image);
+         }
+         var cssleft = Math.floor(($image.width() - loading.width()) / 2);
+         var csstop = Math.floor(((parseInt($image.height()) > 15 ? $image.height() : 400) - loading.height()) / 2);
+         loading.css({'position':'absolute', 'left':cssleft, 'top':csstop}).show();
+       }
+
+    function updateImageStop() {
+         var loading = $image.next('span.image_loading');
+         if (loading.size()) {
+           loading.hide();
+         }
+       }
+    
     //ended by Minglong
     //]]>
     </script>

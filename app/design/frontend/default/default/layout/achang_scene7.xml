@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <layout>
     <PRODUCT_TYPE_scene_jewel_product>
+        <reference name="head">
+            <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
+            <action method="addJs"><script>jquery/jquery-noconflict.js</script></action>
+            <action method="addJs"><script>jquery/jquery.ajaxmanager.js</script></action>
+            <action method="addCss"><stylesheet>css/scene7.css</stylesheet></action>
+        </reference>
         <reference name="product.info">
             <action method="setTemplate">
                 <template>scene7/catalog/product/jewel/view.phtml</template>
