@@ -35,9 +35,6 @@ Default layout, loads most of the pages
         <block type="page/html" name="root" output="toHtml" template="page/3columns.phtml">
 
             <block type="page/html_head" name="head" as="head">
-                <!-- add jquery -->
-                <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
-                <action method="addJs"><script>jquery/jquery-noconflict.js</script></action>
                 <action method="addJs"><script>prototype/prototype.js</script></action>
                 <action method="addJs" ifconfig="dev/js/deprecation"><script>prototype/deprecation.js</script></action>
                 <action method="addJs"><script>lib/ccard.js</script></action>
