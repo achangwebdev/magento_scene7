@@ -13,9 +13,9 @@ $installer->addAttribute('catalog_product','scene7_template',array(
     'input' => 'text',
     'type' => 'varchar',
     'user_defined' => 1,
-    'apply_to' =>'scene_jewel_product',
+    'apply_to' =>'scene7_product',
 
 ));
-$installer->updateAttribute(Mage_Catalog_Model_Product::ENTITY, 'scene7_template', 'apply_to', 'scene_jewel_product');
+$installer->updateAttribute(Mage_Catalog_Model_Product::ENTITY, 'scene7_template', 'apply_to', 'scene7_product');
 
 $installer->endSetup(); 

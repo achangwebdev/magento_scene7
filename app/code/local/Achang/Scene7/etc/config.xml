@@ -90,13 +90,13 @@
         <catalog>
             <product>
                 <type>
-                     <scene_jewel_product translate="label" module="scenescene7">
-                        <label>Jewel Product</label>
+                     <scene7_product translate="label" module="scenescene7">
+                        <label>Scene7 Product</label>
                         <model>scenescene7/product_type_jewel</model>
                         <composite>0</composite>
                         <is_qty>1</is_qty>
                         <price_model>scenescene7/product_price_jewel</price_model>
-                    </scene_jewel_product>
+                    </scene7_product>
                 </type>
             </product>
         </catalog>
