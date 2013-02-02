@@ -39,22 +39,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </scene7_company>
-                        <scene7_jewel_param translate="label">
-                            <label>Scene7 Jewel Param </label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>12</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </scene7_jewel_param>
-                        <scene7_goods_param translate="label">
-                            <label>Scene7 Goods Param </label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>13</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </scene7_goods_param>
                     </fields>                
                 </scene7settings>       
             </groups>
