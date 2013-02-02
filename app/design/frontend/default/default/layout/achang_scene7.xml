@@ -9,16 +9,9 @@
         </reference>
         <reference name="product.info">
             <action method="setTemplate">
-                <template>scene7/catalog/product/jewel/view.phtml</template>
+                <template>scene7/catalog/product/view.phtml</template>
             </action>
-            <block type="scenescene7/product_view_type_jewel" name="product.info.jewel" as="product_type_data" template="catalog/product/view/type/default.phtml">
-                <block type="core/text_list" name="product.info.jewel.extra" as="product_type_data_extra" translate="label">
-                    <label>Product Extra Info</label>
-                </block>
-            </block>
-            <block type="scenescene7/custom_jewel_scene" name="custom.jewel.scene" as ="custom_jewel_scene" template="scene7/custom/jewel/scene.phtml"/>
              <!-- <remove name="product.info.media"/> -->
-           <block type="scenescene7/custom_jewel_preview" name="product.preview" as ="product_preview" template="scene7/custom/preview.phtml"/>
         </reference>
         <reference name="product.info.options">
             <action method="setTemplate">
