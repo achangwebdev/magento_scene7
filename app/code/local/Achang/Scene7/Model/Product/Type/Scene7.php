@@ -1,5 +1,5 @@
 <?php
-class Achang_Scene7_Model_Product_Type_Jewel extends Mage_Catalog_Model_Product_Type_Abstract{
+class Achang_Scene7_Model_Product_Type_Scene7 extends Mage_Catalog_Model_Product_Type_Abstract{
 //    public function prepareForCart(Varien_Object $buyRequest, $product = null)
 //    {
 //        $product = $this->getProduct($product);

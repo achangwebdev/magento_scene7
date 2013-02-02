@@ -1,5 +1,5 @@
 <?php
-class Achang_Scene7_Model_Product_Price_Jewel extends Mage_Catalog_Model_Product_Type_Price{
+class Achang_Scene7_Model_Product_Price_Scene7 extends Mage_Catalog_Model_Product_Type_Price{
 //    public function getFinalPrice($qty=null, $product){
 //        if ($sceneopt = $product->getCustomOption('scene_option')) {
 //                $price = $product->getPrice();

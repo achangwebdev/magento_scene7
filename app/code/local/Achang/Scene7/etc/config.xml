@@ -14,33 +14,6 @@
             <scenescene7_resource>
                 <class>Achang_Scene7_Model_Resource</class>
                 <entities>
-                    <group>
-                        <table>scene_scene7_group</table>
-                    </group>
-                    <group_sceneitem_link>
-                        <table>scene_scene7_group_sceneitem_link</table>
-                    </group_sceneitem_link>
-                    <product_group_link>
-                       <table>scene_scene7_product_group_link</table>
-                    </product_group_link>
-                    <product_sceneitem_link>
-                       <table>scene_scene7_product_sceneitem_link</table>
-                    </product_sceneitem_link>
-                    <scenescene7>
-                        <table>scene_eav_scenescene7_entity</table>
-                    </scenescene7>
-                    <scenescene7_entity_varchar>
-                        <table>scene_eav_scenescene7_entity_varchar</table>
-                    </scenescene7_entity_varchar>
-                    <scenescene7_entity_int>
-                        <table>scene_eav_scenescene7_entity_int</table>
-                    </scenescene7_entity_int>
-                    <product_default_jewelgroup>
-                        <table>scene_scene7_product_default_jewelgroup</table>
-                    </product_default_jewelgroup>
-                    <product_default_goodsgroup>
-                        <table>scene_scene7_product_default_goodsgroup</table>
-                    </product_default_goodsgroup>
                     <product_option_description>
                         <table>catalog_product_option_description</table>
                     </product_option_description>
@@ -92,10 +65,10 @@
                 <type>
                      <scene7_product translate="label" module="scenescene7">
                         <label>Scene7 Product</label>
-                        <model>scenescene7/product_type_jewel</model>
+                        <model>scenescene7/product_type_scene7</model>
                         <composite>0</composite>
                         <is_qty>1</is_qty>
-                        <price_model>scenescene7/product_price_jewel</price_model>
+                        <price_model>scenescene7/product_price_scene7</price_model>
                     </scene7_product>
                 </type>
             </product>
