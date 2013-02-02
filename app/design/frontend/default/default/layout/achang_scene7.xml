@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <layout>
-    <PRODUCT_TYPE_scene_jewel_product>
+    <PRODUCT_TYPE_scene7_product>
         <reference name="head">
             <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
             <action method="addJs"><script>jquery/jquery-noconflict.js</script></action>
@@ -26,29 +26,14 @@
             </action>
         </reference>
         
-    </PRODUCT_TYPE_scene_jewel_product>
+    </PRODUCT_TYPE_scene7_product>
     <!-- 
     <checkout_cart_index>
         <reference name="checkout.cart">
-            <action method="addItemRender"><type>scene_goods_product</type><block>checkout/cart_item_renderer</block><template>scene7/checkout/goods/cart.phtml</template></action>
+            <action method="addItemRender"><type>scene7_product</type><block>checkout/cart_item_renderer</block><template>scene7/checkout/goods/cart.phtml</template></action>
         </reference>
     </checkout_cart_index>
      -->
-    <PRODUCT_TYPE_scene_goods_product>
-        <reference name="product.info">
-            <action method="setTemplate">
-                <template>scene7/catalog/product/goods/view.phtml</template>
-            </action>
-            <block type="scenescene7/product_view_type_goods" name="product.info.goods" as="product_type_data" template="catalog/product/view/type/default.phtml">
-                <block type="core/text_list" name="product.info.goods.extra" as="product_type_data_extra" translate="label">
-                    <label>Product Extra Info</label>
-                </block>
-            </block>
-            <block type="scenescene7/custom_goods_scene" name="custom.goods.scene" as ="custom_goods_scene" template="scene7/custom/goods/scene.phtml"/>
-             <remove name="product.info.media"/>
-           <block type="scenescene7/custom_goods_preview" name="product.preview" as ="product_preview" template="scene7/custom/preview.phtml"/>
-        </reference>
-    </PRODUCT_TYPE_scene_goods_product> 
 </layout>
 
 
