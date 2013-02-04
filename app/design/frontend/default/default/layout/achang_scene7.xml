@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <layout>
     <PRODUCT_TYPE_scene7_product>
+       <label>Catalog Scene7 Product View (Scene7)</label>
         <reference name="head">
             <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
             <action method="addJs"><script>jquery/jquery-noconflict.js</script></action>
@@ -11,8 +12,17 @@
             <action method="setTemplate">
                 <template>scene7/catalog/product/view.phtml</template>
             </action>
+            
+            <block type="catalog/product_view_type_simple" name="product.info.simple" as="product_type_data" template="catalog/product/view/type/default.phtml">
+                <block type="core/text_list" name="product.info.simple.extra" as="product_type_data_extra" translate="label">
+                    <label>Product Extra Info</label>
+                </block>
+            </block>
              <!-- <remove name="product.info.media"/> -->
         </reference>
+        
+                
+
         <reference name="product.info.options">
             <action method="setTemplate">
                 <template>scene7/catalog/product/view/options.phtml</template>
