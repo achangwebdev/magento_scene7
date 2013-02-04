@@ -8,7 +8,7 @@ Mage::helper('scenescene7')->createAttributeSet('Scene7', $attrSetId);
 
 $installer->removeAttribute('catalog_product', 'scene7_template');
 $installer->addAttribute('catalog_product','scene7_template',array(
-    'group' =>'Scenescene7', 
+    'group' =>'Scene7', 
     'label' => 'Scene7 Template Name',
     'input' => 'text',
     'type' => 'varchar',
