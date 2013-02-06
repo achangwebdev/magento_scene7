@@ -50,7 +50,7 @@ class Achang_Scene7_Block_Product_View_Options extends Mage_Catalog_Block_Produc
                         ->addScene7DetailToResult(Mage::app()->getStore()->getId())
                         ->addOptionToFilter(array($option->getId()));
                 foreach ($values as $value) {
-                   $config[$option->getId()][$value->getId()] = array('sku'=>$value->getSku(),'scene7_code'=>$value->getScene7Code());
+                   $config[$option->getId()][$value->getId()] = array('sku'=>$value->getSku(),'scene7_code'=>$value->getScene7Code(),'is_default'=>$value->getIsDefault());
                 }
             } else if($option->getGroupByType() == Achang_Scene7_Model_Catalog_Product_Option::OPTION_GROUP_SCENE7TEXT){
                 $config[$option->getId()] = array('sku'=>$value->getSku());

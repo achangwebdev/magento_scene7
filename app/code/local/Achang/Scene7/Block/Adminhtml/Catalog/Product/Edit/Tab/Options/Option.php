@@ -121,6 +121,7 @@ class Achang_Scene7_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Option exte
                             'price_type' => $_value->getPriceType(),
                             'sku' => $this->escapeHtml($_value->getSku()),
                             'scene7_code' => $this->escapeHtml($_value->getScene7Code()),
+                            'is_default' => $_value->getIsDefault(),
                             'sort_order' => $_value->getSortOrder(),
                         );
 

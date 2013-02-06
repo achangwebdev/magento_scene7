@@ -59,6 +59,57 @@ class Achang_Scene7_Model_Resource_Product_Option_Value extends Mage_Catalog_Mod
             );
         }
         
+            if (!$object->getData('scope', 'is_default')) {
+            $statement = $this->_getReadAdapter()->select()
+                ->from($scene7detailTable)
+                ->where('option_type_id = '.$object->getId().' AND store_id = ?', 0);
+
+            if ($this->_getReadAdapter()->fetchOne($statement)) {
+                if ($object->getStoreId() == '0') {
+                    $this->_getWriteAdapter()->update(
+                        $scene7detailTable,
+                            array('is_default' => $object->getIsDefault()),
+                            $this->_getWriteAdapter()->quoteInto('option_type_id='.$object->getId().' AND store_id=?', 0)
+                    );
+                }
+            } else {
+                $this->_getWriteAdapter()->insert(
+                    $scene7detailTable,
+                        array(
+                            'option_type_id' => $object->getId(),
+                            'store_id' => 0,
+                            'is_default' => $object->getIsDefault()
+                ));
+            }
+        }
+
+        if ($object->getStoreId() != '0' && !$object->getData('scope', 'is_default')) {
+            $statement = $this->_getReadAdapter()->select()
+                ->from($scene7detailTable)
+                ->where('option_type_id = '.$object->getId().' AND store_id = ?', $object->getStoreId());
+
+            if ($this->_getReadAdapter()->fetchOne($statement)) {
+                $this->_getWriteAdapter()->update(
+                    $scene7detailTable,
+                        array('is_default' => $object->getIsDefault()),
+                        $this->_getWriteAdapter()
+                            ->quoteInto('option_type_id='.$object->getId().' AND store_id=?', $object->getStoreId()));
+            } else {
+                $this->_getWriteAdapter()->insert(
+                    $scene7detailTable,
+                        array(
+                            'option_type_id' => $object->getId(),
+                            'store_id' => $object->getStoreId(),
+                            'is_default' => $object->getIsDefault()
+                ));
+            }
+        } elseif ($object->getData('scope', 'is_default')) {
+            $this->_getWriteAdapter()->delete(
+                $scene7detailTable,
+                $this->_getWriteAdapter()->quoteInto('option_type_id = '.$object->getId().' AND store_id = ?', $object->getStoreId())
+            );
+        }
+        
         return parent::_afterSave($object);
     }
 
@@ -119,7 +170,7 @@ class Achang_Scene7_Model_Resource_Product_Option_Value extends Mage_Catalog_Mod
             // scene7 detail
             $table = $this->getTable('scenescene7/product_option_type_detail');
             $sql = 'REPLACE INTO `' . $table . '` '
-                . 'SELECT NULL, ' . $newTypeId . ', `store_id`, `scene7_code`'
+                . 'SELECT NULL, ' . $newTypeId . ', `store_id`, `scene7_code`,`is_default`'
                 . 'FROM `' . $table . '` WHERE `option_type_id`=' . $oldTypeId;
             $this->_getWriteAdapter()->query($sql);
         }
