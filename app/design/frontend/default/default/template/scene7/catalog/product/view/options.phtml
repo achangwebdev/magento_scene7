@@ -217,7 +217,39 @@
            loading.hide();
          }
        }
-    
+
+    $j(document).ready(function(){
+    	var opConfig2 = <?php echo $this->getJsonConfig() ?>;
+        var opscene7Config = <?php echo $this->getScene7AttributeJsonConfig();?>;
+    	
+        $$('.product-custom-option').each(function(element){
+            var optionId = 0;
+            element.name.sub(/[0-9]+/, function(match){
+                optionId = match[0];
+            });
+            if (opConfig2[optionId]) {
+                if(element.type == 'select-one') {
+                    if (element.options) {
+                        $A(element.options).each(function(selectOption){
+                                if (opConfig2[optionId][selectOption.value]) {
+                                    if(opscene7Config[optionId]){
+                                        if(opscene7Config[optionId][selectOption.value]['is_default']){
+                                            if(opscene7Config[optionId][selectOption.value]['is_default'] == '1'){
+                                                element.value = selectOption.value;
+                                            }
+                                        }
+
+                                    }
+                                    
+                                }
+                        });
+                    }
+                }
+            }
+            
+        });
+        opConfig.reloadPrice();
+    });
     //ended by Minglong
     //]]>
     </script>
