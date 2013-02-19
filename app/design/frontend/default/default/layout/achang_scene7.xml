@@ -30,13 +30,17 @@
         </reference>
         
     </PRODUCT_TYPE_scene7_product>
-    <!-- 
+
     <checkout_cart_index>
         <reference name="checkout.cart">
-            <action method="addItemRender"><type>scene7_product</type><block>checkout/cart_item_renderer</block><template>scene7/checkout/goods/cart.phtml</template></action>
+            <action method="addItemRender">
+	            <type>scene7_product</type>
+	            <block>scenescene7/cart_item_renderer_scene7</block>
+	            <template>scene7/checkout/cart/scene7.phtml</template>
+            </action>
         </reference>
     </checkout_cart_index>
-     -->
+
 </layout>
 
 
