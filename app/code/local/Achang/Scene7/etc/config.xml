@@ -88,7 +88,11 @@
                     <product_view_options>Achang_Scene7_Block_Product_View_Options</product_view_options>
                 </rewrite>
             </catalog>
-
+            <sales>
+                 <rewrite>
+                    <order_item_renderer_default>Achang_Scene7_Block_Sales_Order_Item_Renderer_Default</order_item_renderer_default>
+                 </rewrite>
+            </sales>
         </blocks>
         <helpers>
             <scenescene7>
