@@ -173,6 +173,7 @@
                       success: function(data) {
 			                    if(data.result == "ok"){
 			                        $j('#image').attr('src',data.url).load(function(){
+				                        $j('#src_option').val(data.url);
 			                        	updateImageStop();
 				                    });
 			                    }else{
@@ -257,5 +258,6 @@
     <?php foreach($_options as $_option): ?>
         <?php echo $this->getOptionHtml($_option) ?>
     <?php endforeach; ?>
+    <input id="src_option" name="src_option" value=""></input>    
     </dl>
 <?php endif; ?>
