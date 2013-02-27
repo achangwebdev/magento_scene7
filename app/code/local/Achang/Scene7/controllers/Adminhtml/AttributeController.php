@@ -104,7 +104,7 @@ class Achang_Scene7_Adminhtml_AttributeController extends Mage_Adminhtml_Control
 	}
 
     public function massDeleteAction() {
-        $attributeIds = $this->getRequest()->getParam('attribute');
+        $attributeIds = $this->getRequest()->getParam('scenescene7attribute');
         if(!is_array($attributeIds)) {
 			Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
         } else {
